@@ -26,36 +26,33 @@ public class TestSendMailWIthAttachment {
     @Test
     public void testSendMailWithAttachment(){
 
-        driver.get("https://mail.126.com");
+        driver.get("http://pms.admin.uat.i-fun.tech/page/order-manage/sign-list");
 
-        sleep(10);
+        sleep(3000);
 
         //定位使用密码登录的链接
-        driver.findElement(By.xpath("//*[@id=\"switchAccountLogin\"]")).click();
+        //driver.findElement(By.xpath("//*[@id=\"switchAccountLogin\"]")).click();
         //使用switchTo().frame（）来查询到iframe标签
-        driver.switchTo().frame(0);
+        //driver.switchTo().frame(0);
         //WaitUtil.sleep(10);
         //定位用户名输入框
-        WebElement userName = driver.findElement(By.xpath("/html/body/div[2]/div[2]/div[2]" +
-                "/form/div/div[1]/div[2]/input"));
+        WebElement userName = driver.findElement(By.xpath("//*[@id=\"username\"]"));
         //定位密码输入框
-        WebElement passWord = driver.findElement(By.xpath("/html/body/div[2]/div[2]/div[2]" +
-                "/form/div/div[3]/div[2]/input[2]"));
+        WebElement passWord = driver.findElement(By.xpath("//*[@id=\"password\"]"));
         //定位到页面登录按钮
-        WebElement loginButton = driver.findElement(By.xpath("/html/body/div[2]/div[2]/div[2]" +
-                "/form/div/div[8]/a"));
+        WebElement loginButton = driver.findElement(By.xpath("//*[@id=\"root\"]/div/div/div[2]/div/form/div/div[3]/div/div/span/button"));
 
         sleep(2000);
 
         userName.clear();
-        userName.sendKeys("p18601632189");
-        passWord.sendKeys("pxm2798415123");
+        userName.sendKeys("admin@sce-re.com");
+        passWord.sendKeys("12345678");
 
         loginButton.click();
 
-        sleep(3000);
+        sleep(5000);
 
-        Assert.assertTrue(driver.getPageSource().contains("p18601632189"));
+        Assert.assertTrue(driver.getPageSource().contains("超级管理员"));
 /**
         //调用封装好的显示等待方法，在页面显示出退出链接后，继续执行后续代码逻辑  //*[@id="_mail_component_118_118"]/a
        // waitWebElement(driver,"//a[contains(.,'退出')]");
@@ -99,9 +96,9 @@ public class TestSendMailWIthAttachment {
 
     @BeforeMethod
     public void beforeMethod(){
-        System.setProperty("webdriver.FirefoxDriver.driver","F:\\BaiduNetdiskDownload\\KeyWordsFrameWork\\driver\\geckodriver.exe");
-        driver = new FirefoxDriver();
-        driver.manage().window().maximize();
+        System.setProperty("webdriver.chrome.driver","F:\\BaiduNetdiskDownload\\KeyWordsFrameWork\\driver\\chromedriver.exe");
+        driver = new ChromeDriver();
+        //driver.manage().window().maximize();
     }
 
     @AfterMethod
