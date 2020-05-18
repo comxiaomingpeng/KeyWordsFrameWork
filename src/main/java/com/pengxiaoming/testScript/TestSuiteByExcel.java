@@ -2,6 +2,7 @@ package com.pengxiaoming.testScript;
 
 import com.pengxiaoming.configuration.Constants;
 import com.pengxiaoming.configuration.KeyWordsAction;
+import com.pengxiaoming.util.ExcelUtil;
 import com.pengxiaoming.util.Log;
 import org.apache.log4j.xml.DOMConfigurator;
 import org.testng.Assert;
@@ -57,6 +58,17 @@ public class TestSuiteByExcel {
                     value = getCellData(Constants.Sheet_TestSteps,testStep,Constants.Col_ActionValue);
                     Log.info("在Excel文件中读取到的值："+value);
                     execute_Actions();
+
+                    if(testResult == false){
+                        setCellData(Constants.Sheet_TestSuite,testCaseNO,Constants.Col_TestSuiteTestResult,"测试执行失败");
+
+                        Log.endTestCase(testCaseID);
+                        break;
+                    }
+                    if (testResult){
+                        setCellData(Constants.Sheet_TestSuite,testCaseNO,Constants.Col_TestSuiteTestResult,"测试执行成功");
+                    }
+
                 }
 
                 Log.endTestCase(testCaseID);
@@ -71,7 +83,16 @@ public class TestSuiteByExcel {
                 if(method[i].getName().equals(keyWord)){
                     //找到keyWordsAction类中的映射方法 后，通过调用invoke方法完成函数调用
                     method[i].invoke(keyWordsAction,value);
-                    break;
+
+                    if (testResult){
+                        setCellData(Constants.Sheet_TestSteps,testStep,Constants.Col_TestStepTestResult,"测试步骤执行成功");
+                        break;
+                    }else {
+                        setCellData(Constants.Sheet_TestSteps,testStep,Constants.Col_TestStepTestResult,"测试步骤执行失败");
+                        keyWordsAction.close_browser("");
+                        break;
+                    }
+
                 }
             }
         }catch (Exception e){
