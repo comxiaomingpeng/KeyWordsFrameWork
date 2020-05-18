@@ -20,6 +20,7 @@ public class TestSuiteByExcel {
     public static int testLastStep;
     public static String testCaseID;
     public static String testCaseRunFlag;
+    public static boolean testResult;
 
     @Test
     public void testTestSuite(){
@@ -81,6 +82,5 @@ public class TestSuiteByExcel {
     @BeforeClass
     public void BeforeClass(){
         DOMConfigurator.configure("log4j.xml");
-
     }
 }

@@ -14,4 +14,7 @@ public class Constants {
     public static final int Col_RunFlag = 2;
     public static final String Sheet_TestSteps = "登录";
     public static final String Sheet_TestSuite = "测试用例集合";
+
+    public static final int Col_TestStepTestResult = 5;
+    public static final int Col_TestSuiteTestResult = 3;
 }

@@ -1,5 +1,6 @@
 package com.pengxiaoming.configuration;
 
+import com.pengxiaoming.testScript.TestSuiteByExcel;
 import com.pengxiaoming.util.Log;
 import com.pengxiaoming.util.ObjectMap;
 import org.apache.log4j.xml.DOMConfigurator;
@@ -58,6 +59,7 @@ public class KeyWordsAction {
             driver.findElement(objectMap.getLocator("switch")).click();
             Log.info("定位到密码输入方式登录");
         } catch (Exception e) {
+            TestSuiteByExcel.testResult = false;
             e.printStackTrace();
         }
     }
@@ -82,6 +84,7 @@ public class KeyWordsAction {
             driver.findElement(objectMap.getLocator("password")).sendKeys(passWord);
             Log.info("输入密码："+passWord);
         } catch (Exception e) {
+            TestSuiteByExcel.testResult = false;
             e.printStackTrace();
         }
     }
@@ -96,6 +99,7 @@ public class KeyWordsAction {
             e.printStackTrace();
         }
     }
+/*
 
     public static void orderManage(){
         try{
@@ -114,7 +118,7 @@ public class KeyWordsAction {
             e.printStackTrace();
         }
     }
-
+*/
 
     public static void apartmentName(String apartmentName){
         try{
@@ -128,6 +132,7 @@ public class KeyWordsAction {
             pressEnterKey();
 
         }catch (Exception e){
+            TestSuiteByExcel.testResult = false;
             e.printStackTrace();
         }
     }
@@ -136,6 +141,7 @@ public class KeyWordsAction {
         try{
             driver.findElement(objectMap.getLocator("check")).click();
         }catch (Exception e){
+            TestSuiteByExcel.testResult = false;
             e.printStackTrace();
         }
     }
@@ -161,7 +167,7 @@ public class KeyWordsAction {
 */
     public static void Assert_String(String assertString){
         Assert.assertTrue(driver.getPageSource().contains(assertString));
-        Log.info("断言是否出现"+assertString);
+        Log.info("断言是否出现了：" + assertString);
     }
 
 
