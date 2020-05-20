@@ -48,7 +48,6 @@ public class ExcelUtil {
      */
     public static String getCellData(int RowNum,int ColNum){
         cell = xssfSheet.getRow(RowNum).getCell(ColNum);
-
         String CellData = cell.getCellType()==XSSFCell.CELL_TYPE_STRING?cell.getStringCellValue()
                 +"":String.valueOf(Math.round(cell.getNumericCellValue()));
         return CellData;

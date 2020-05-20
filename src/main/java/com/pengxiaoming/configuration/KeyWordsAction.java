@@ -40,8 +40,8 @@ public class KeyWordsAction {
             cap.setBrowserName("chrome");
             cap.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
             driver = new ChromeDriver();
-            //driver.manage().window().maximize();
-            /*options = webdriver.ChromeOptions();
+            /*driver.manage().window().maximize();
+            options = webdriver.ChromeOptions();
             options.add_argument('--ignore-certificate-errors');
             ddriver = webdriver.Chrome(chrome_options=options);*/
             Log.info("chrome浏览器实例已经声明");
@@ -72,6 +72,7 @@ public class KeyWordsAction {
             //driver.findElement(objectMap.getLocator("userName")).sendKeys(userName);
             Log.info("输入用户名："+userName);
         } catch (Exception e) {
+            TestSuiteByExcel.testResult = false;
             e.printStackTrace();
         }
     }
@@ -96,6 +97,7 @@ public class KeyWordsAction {
 
             sleep(5000);
         } catch (Exception e) {
+            TestSuiteByExcel.testResult = false;
             e.printStackTrace();
         }
     }

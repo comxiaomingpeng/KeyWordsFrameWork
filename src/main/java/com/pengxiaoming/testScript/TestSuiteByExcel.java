@@ -21,7 +21,7 @@ public class TestSuiteByExcel {
     public static int testLastStep;
     public static String testCaseID;
     public static String testCaseRunFlag;
-    public static boolean testResult;
+    public static boolean testResult = true;
 
     @Test
     public void testTestSuite(){
